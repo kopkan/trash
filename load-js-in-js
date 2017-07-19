@@ -1,0 +1,7 @@
+    char* js2=
+            "var script = document.createElement('script');"
+            "script.src = 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js';"
+            "script.onload = function () {"
+            "};"
+            "document.head.appendChild(script);";
+    this->mainFrame()->evaluateJavaScript(js2);
