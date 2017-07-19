@@ -5,3 +5,21 @@
             "};"
             "document.head.appendChild(script);";
     this->mainFrame()->evaluateJavaScript(js2);
+
+
+
+
+
+
+
+
+/////////////////////////////////////
+
+var script = document.createElement('script');
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
+document.body.appendChild(script);
+
+script.onload = function() {
+    // после выполнения скрипта становится доступна функция _
+    alert( _ ); // её код
+  }
