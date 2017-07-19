@@ -1,0 +1,31 @@
+class WebViewMenu : public QWidgetAction {
+public:
+    WebViewMenu () :QWidgetAction (0) {
+        QWebView* pWidget = new QWebView;
+        pWidget->load((QUrl)"https://vk.com");
+
+        pWidget->setMinimumSize(100, 100);
+        pWidget->setMaximumSize(100, 100);
+
+        setDefaultWidget(pWidget);
+    }
+};
+
+
+
+
+
+    QMenu *trayIconMenu = new QMenu();
+    WebViewMenu * webViewMenu = new WebViewMenu;
+    trayIconMenu->addAction(webViewMenu);
+
+
+    QSystemTrayIcon* trayIcon = new QSystemTrayIcon();
+    QIcon trayImage("D:\\Develop\\QtProject\\Antivir\\build-Antivir-Desktop_Qt_5_5_1_MinGW_32bit2-Release\\Icon1.ico");
+    trayIcon->setIcon(trayImage);    
+    trayIcon->setContextMenu(trayIconMenu);
+
+    QObject::connect(trayIcon, &QSystemTrayIcon::activated, [](){
+        qDebug()<<"228";
+    });
+    trayIcon->show();
