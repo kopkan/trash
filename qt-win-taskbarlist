@@ -1,0 +1,20 @@
+{
+    QWinJumpListItem* winLink = new QWinJumpListItem(QWinJumpListItem::Link);
+    winLink->setFilePath("D:\\Games\\Alien Shooter\\AlienShooter.exe");
+    winLink->setArguments(QStringList(QString("as")));
+    winLink->setDescription("Some Description");
+    winLink->setIcon(QIcon("D:\\Develop\\QtProject\\Antivir\\build-Antivir-Desktop_Qt_5_5_1_MinGW_32bit2-Release\\Icon1.ico"));
+    winLink->setTitle("Some Text");
+
+
+    QWinJumpListCategory* myListCat = new QWinJumpListCategory;
+    myListCat->setTitle("setTitle");
+    myListCat->addItem(winLink);
+    myListCat->setVisible(true);
+
+
+
+    QWinJumpList mainWinList;
+    mainWinList.addCategory(myListCat);
+    mainWinList.tasks()->setVisible(true);
+}
