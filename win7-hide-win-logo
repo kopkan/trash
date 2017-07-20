@@ -33,3 +33,7 @@ bool start()
 		return false;
 	}
 }
+
+
+    //SetWindowLong (hwndM, GWL_EXSTYLE, GetWindowLong(hwndM, GWL_EXSTYLE) | WS_EX_LAYERED);
+    //SetLayeredWindowAttributes (hwndM, 0, 0, LWA_ALPHA);
