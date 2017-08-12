@@ -1,0 +1,211 @@
+#include <Windows.h>
+#include <tchar.h>
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+
+char* serviceName = _T("AAAAAAA");
+
+char* servicePath = _T("C:\\Users\\Corteli\\Downloads\\SampleService\\SampleService\\Release\\SampleService.exe");
+
+//char* servicePath = _T("C:\\SampleService.exe");
+
+//char* servicePath = _T("D:\\Develop\\VisualStudio15Project\\p2p\\KMDF Driver1\\Release\\KMDFDriver1.sys");
+
+
+int installService() {
+	SC_HANDLE hSCManager = OpenSCManager(NULL, NULL, SC_MANAGER_CREATE_SERVICE);
+	if (!hSCManager) {
+		printf("Error: Can't open Service Control Manager");
+		return -1;
+	}
+
+	SC_HANDLE hService = CreateServiceA(
+		hSCManager,
+		serviceName,
+		serviceName,
+		SERVICE_ALL_ACCESS,
+		SERVICE_WIN32_OWN_PROCESS,
+		//SERVICE_KERNEL_DRIVER,
+		SERVICE_AUTO_START,
+		//SERVICE_DEMAND_START,
+		SERVICE_ERROR_NORMAL,
+		servicePath,
+		NULL, NULL, NULL, NULL, NULL
+		);
+
+	if (!hService) {
+		int err = GetLastError();
+		switch (err) {
+		case ERROR_ACCESS_DENIED:
+			printf("Error: ERROR_ACCESS_DENIED");
+			break;
+		case ERROR_CIRCULAR_DEPENDENCY:
+			printf("Error: ERROR_CIRCULAR_DEPENDENCY");
+			break;
+		case ERROR_DUPLICATE_SERVICE_NAME:
+			printf("Error: ERROR_DUPLICATE_SERVICE_NAME");
+			break;
+		case ERROR_INVALID_HANDLE:
+			printf("Error: ERROR_INVALID_HANDLE");
+			break;
+		case ERROR_INVALID_NAME:
+			printf("Error: ERROR_INVALID_NAME");
+			break;
+		case ERROR_INVALID_PARAMETER:
+			printf("Error: ERROR_INVALID_PARAMETER");
+			break;
+		case ERROR_INVALID_SERVICE_ACCOUNT:
+			printf("Error: ERROR_INVALID_SERVICE_ACCOUNT");
+			break;
+		case ERROR_SERVICE_EXISTS:
+			printf("Error: ERROR_SERVICE_EXISTS");
+			break;
+		default:
+			printf("Error: Undefined");
+		}
+		CloseServiceHandle(hSCManager);
+		return -1;
+	}
+	CloseServiceHandle(hService);
+
+	CloseServiceHandle(hSCManager);
+	printf("Success install service!");
+	return 0;
+}
+
+int removeService() {
+	SC_HANDLE hSCManager = OpenSCManager(NULL, NULL, SC_MANAGER_ALL_ACCESS);
+	if (!hSCManager) {
+		printf("Error: Can't open Service Control Manager");
+		return -1;
+	}
+	SC_HANDLE hService = OpenService(hSCManager, serviceName, SERVICE_STOP | DELETE);
+	if (!hService) {
+		printf("Error: Can't remove service");
+		CloseServiceHandle(hSCManager);
+		return -1;
+	}
+
+	DeleteService(hService);
+	CloseServiceHandle(hService);
+	CloseServiceHandle(hSCManager);
+	printf("Success remove service!");
+	return 0;
+}
+
+int startService() {
+	SC_HANDLE hSCManager = OpenSCManager(NULL, NULL, SC_MANAGER_CREATE_SERVICE);
+	SC_HANDLE hService = OpenService(hSCManager, serviceName, SERVICE_START);
+
+	cout << hService << endl;
+
+	if (!StartService(hService, 0, NULL)) {
+
+		cout << GetLastError() << endl;
+
+
+		CloseServiceHandle(hSCManager);
+		printf("Error: Can't start service");
+		return -1;
+	}
+
+	cout << "run";
+
+	CloseServiceHandle(hService);
+	CloseServiceHandle(hSCManager);
+	return 0;
+}
+
+
+int _tmain(int argc, TCHAR *argv[])
+{
+	OutputDebugString(_T("My Sample Service: Main: Entry\n"));
+
+	removeService();
+	installService();
+	startService();
+	//RemoveService();
+
+	OutputDebugString(_T("My Sample Service: Main: Exit\n"));
+
+	/*
+	CHAR fname[] = "D:/node.exe js";
+	CHAR cfname[] = "D:/";
+	STARTUPINFO cif;
+	ZeroMemory(&cif, sizeof(STARTUPINFOA));
+	PROCESS_INFORMATION pi;
+
+	CreateProcess(NULL, fname, NULL, NULL, FALSE,
+		CREATE_NEW_PROCESS_GROUP, NULL,
+		cfname, &cif, &pi);
+
+		*/
+	system("pause");
+	return 0;
+}
+/*
+
+
+// Thanks CodeProject
+int _cdecl main(void)
+{
+	SC_HANDLE hSCManager;
+	SC_HANDLE hService;
+	SERVICE_STATUS ss;
+
+	hSCManager = OpenSCManager(NULL, NULL, SC_MANAGER_CREATE_SERVICE);
+
+	printf("Load Driver\n");
+
+	if (hSCManager)
+	{
+		printf("Create Service\n");
+
+		hService = CreateService(hSCManager, "Example2",
+			"Example Driver2",
+			SERVICE_START | DELETE | SERVICE_STOP,
+			SERVICE_KERNEL_DRIVER,
+			SERVICE_DEMAND_START,
+			SERVICE_ERROR_IGNORE,
+			"D:\\Develop\\VisualStudio15Project\\p2p\\KMDF Driver1\\Release\\KMDFDriver1.sys",
+			NULL, NULL, NULL, NULL, NULL);
+
+		if (!hService)
+		{
+			printf("open\n");
+			hService = OpenService(hSCManager, "Example2",
+				SERVICE_START | DELETE | SERVICE_STOP);
+		}
+
+		if (hService)
+		{
+			printf("Start Service\n");
+
+			cout << GetLastError() << endl;
+
+			cout<<StartServiceA(hService, 0, NULL)<<endl;
+
+			cout << GetLastError() << endl;
+
+			printf("Press Enter to close service\r\n");
+			getchar();
+			ControlService(hService, SERVICE_CONTROL_STOP, &ss);
+
+			DeleteService(hService);
+
+			CloseServiceHandle(hService);
+
+		}
+
+		CloseServiceHandle(hSCManager);
+	}
+
+
+	system("pause");
+	return 0;
+}
+
+*/
