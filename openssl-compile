@@ -1,10 +1,22 @@
 1)install perl
 2)download openssl https://www.openssl.org/source/
 
-
 in vs native tools x86
 
 perl Configure VC-WIN32 --prefix=C:\Build-OpenSSL-VC-32 no-asm
 ms\do_ms
 nmake -f ms\nt.mak            (ntdll.mak if need dll build)
 nmake -f ms\nt.mak install    (ntdll.mak if need dll build)
+
+
+
+
+
+
+
+X64
+
+perl Configure VC-WIN64A --prefix=C:\Build-OpenSSL-VC-64 no-asm
+ms\do_win64a
+nmake -f ms\nt.mak
+nmake -f ms\nt.mak install
