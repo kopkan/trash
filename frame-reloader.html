@@ -1,0 +1,12 @@
+ <iframe src="http://www.pogoda.by/" id="myframe">
+    фрейм не пашет
+ </iframe>
+ 
+ <script>
+ var iframe = document.getElementById('myframe');
+ 
+function func() {
+  var tmp_src = iframe.src; iframe.src = ''; iframe.src = tmp_src;
+}
+setInterval(func, 30000);
+ </script>
