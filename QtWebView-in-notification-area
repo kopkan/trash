@@ -1,11 +1,14 @@
+//add webview when right mouse click
+
 class WebViewMenu : public QWidgetAction {
 public:
     WebViewMenu () :QWidgetAction (0) {
-        QWebView* pWidget = new QWebView;
+        //QWebView* pWidget = new QWebView;
+        QWebEngineView* pWidget = new QWebEngineView;
         pWidget->load((QUrl)"https://vk.com");
 
-        pWidget->setMinimumSize(100, 100);
-        pWidget->setMaximumSize(100, 100);
+        pWidget->setMinimumSize(300, 300);
+        pWidget->setMaximumSize(300, 300);
 
         setDefaultWidget(pWidget);
     }
