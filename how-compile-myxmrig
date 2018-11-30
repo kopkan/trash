@@ -1,0 +1,4 @@
+1) download new curl
+2) build curl - libcurl.lib (vs solution in raw folder)
+3) rebuild restclient
+4) go)
