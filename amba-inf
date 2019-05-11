@@ -68,3 +68,19 @@ Vip файлы
 </div>
 </div>
 </div>
+
+---------------------------------------------------------------
+
+
+Популярные файлы КС
+<div class="pop_file"> 
+<div class="p_title"><a href="$ENTRY_URL$" title="$TITLE$">$TITLE$</a></div> 
+
+<div class="poster"><a href="$ENTRY_URL$" target="_parent"><img src="$IMG_SMALL_URL1$" onmouseout="this.src='$IMG_SMALL_URL1$';" onmouseover="this.src='/new/img/servers-cs-33-min.png';" alt="$TITLE$" title="$TITLE$"></a></div>
+
+<div class="hidden">
+<div class="row">$CATEGORY_NAME$</div>
+<div class="row">Просмотров: <span>$READS$</span></div>
+<div class="row">Добавил: <span style="color:#EC007B;">$USERNAME$</span></div>
+</div>
+</div>
