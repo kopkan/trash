@@ -1,0 +1,26 @@
+Название информера: Статистика сайта
+Раздел сайта: Счетчик материалов
+
+Шаблон
+<div class="row"> <div class="stats_ico2"><span style="color:#A8A8A8;">Постов на форуме:</span></div> <div class="stats_number">$FORUM_T$</div></div>
+<div class="row"> <div class="stats_ico2"><a href="/index/0-17"><span style="color:#A8A8A8;">Комментариев</span></a></div> <div class="stats_number">$COMMENTS$</div></div>
+<div class="row"> <div class="stats_ico3"><span style="color:#A8A8A8;">Файлов:</span></div> <div class="stats_number">$NEWS$</div></div>
+<div class="row"> <div class="stats_ico4"><span style="color:#A8A8A8;">Новостей:</span></div> <div class="stats_number">$BLOG$</div></div>
+<div class="row"> <div class="stats_ico3"><span style="color:#A8A8A8;">Видео:</span></div> <div class="stats_number">$VIDEO$</div></div>
+
+
+
+Vip файлы
+Шаблон
+<div class="pop_file"> 
+<div class="p_title"><a href="$ENTRY_URL$" title="$TITLE$">$TITLE$</a></div> 
+
+
+<div class="poster"><a href="$ENTRY_URL$" target="_parent"><img src="$IMG_SMALL_URL1$" onmouseout="this.src='$IMG_SMALL_URL1$';" onmouseover="this.src='/new/img/servers-cs-18_cs-min.png';" alt="$TITLE$" title="$TITLE$"></a></div>
+
+<div class="hidden">
+<div class="row">$CATEGORY_NAME$</div>
+<div class="row">Просмотров: <span>$READS$</span></div>
+<div class="row">Добавил: <span style="color:#EC4A00;">$USERNAME$</span></div>
+</div>
+</div>
