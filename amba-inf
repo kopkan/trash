@@ -41,3 +41,30 @@ Vip файлы
 <div class="row"> <div class="stats_ico3"><span style="color:#A8A8A8;">Файлов:</span></div> <div class="stats_number">$NEWS$</div></div>
 <div class="row"> <div class="stats_ico4"><span style="color:#A8A8A8;">Новостей:</span></div> <div class="stats_number">$BLOG$</div></div>
 <div class="row"> <div class="stats_ico3"><span style="color:#A8A8A8;">Видео:</span></div> <div class="stats_number">$VIDEO$</div></div>
+
+
+
+---------------------------------------------------------
+КОММЕНТАРИИ НОВЫЕ
+<div class="chat_box1">
+ <div class="top">
+
+<span class="left"><span style="color:#00D5CE;">$USERNAME$</span> <span style="color:#8E8E8E;"> &rArr; сказал про:</span></span>
+<span class="right" title="$DATE$">$TIME$</span>
+</div>
+<div class="hidden">
+
+<?if($USER_AVATAR_URL$)?>
+<div class="avatar"><a href="$PROFILE_URL$" target="_blank"><img src="$USER_AVATAR_URL$" onmouseout="this.src='$USER_AVATAR_URL$';" onmouseover="this.src='/new/img/avatar_user31.png';" alt="$USERNAME$" title="$USERNAME$"></a></div>
+<?else?>
+<div class="avatar"><a href="$PROFILE_URL$" target="_blank"><img src="/new/img/avatar_user.png" onmouseout="this.src='/new/img/avatar_user.png';" onmouseover="this.src='/new/img/avatar_user31.png';" alt="$USERNAME$" title="$USERNAME$"></a></div>
+<?endif?>
+
+
+
+
+<div class="mess">
+<a href="$ENTRY_URL$">$ENTRY_TITLE$</a>
+</div>
+</div>
+</div>
