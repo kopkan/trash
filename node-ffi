@@ -1,11 +1,19 @@
 
-
 https://github.com/nodejs/node-gyp
 
-
-
-
+Возможно решит проблему с зависимостью, но возможно она создана ошибкой подсасывания неверного пути из PATH:
 https://github.com/nodejs/node-gyp/issues/1747#issuecomment-502210818
 joaocgreis commented on 14 Jun 2019 • 
 npm install --global node-gyp@latest
 for /f "delims=" %P in ('npm prefix -g') do npm config set node_gyp "%P\node_modules\node-gyp\bin\node-gyp.js"
+
+
+
+
+
+
+
+
+Запуск от юзера, следим чтобы не взяло путь другой ноды или иной зависимости
+SET PATH=D:\Dev\nodejs\node-v10.16.0-win-x86;C:\Users\kopkan\.windows-build-tools\python27
+npm i @saleae/ffi
