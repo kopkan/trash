@@ -22,7 +22,8 @@ function cmdRun(task, error){
 }
 
 
-function bindTaskString(comand, keyName, valueName, value, valueType, isX64){
+
+function createTaskString(comand, keyName, valueName, value, valueType, isX64){
     let valueNameStr = "";
     if(valueName!=undefined && valueName!=null){
         valueNameStr = "/v \""+ valueName +"\"";
@@ -48,18 +49,18 @@ function bindTaskString(comand, keyName, valueName, value, valueType, isX64){
 
 function cmdRegeditCreate(keyName, valueName, value, valueType, isX64){
 
-    let task = bindTaskString("ADD", keyName, valueName, value, valueType, isX64);
+    let task = createTaskString("ADD", keyName, valueName, value, valueType, isX64);
     cmdRun(task);
 }
 
 function cmdRegeditRemove(keyName, valueName, isX64){
-    let task = bindTaskString("DELETE", keyName, valueName, null, null, isX64);
+    let task = createTaskString("DELETE", keyName, valueName, null, null, isX64);
     cmdRun(task);
 }
 
 function cmdRegeditQuery(keyName, valueName, isX64){
 
-    let task = bindTaskString("QUERY", keyName, valueName, null, null, isX64);
+    let task = createTaskString("QUERY", keyName, valueName, null, null, isX64);
     let out = cmdRun(task);
     if(out == false){return undefined;}
 
@@ -87,6 +88,22 @@ function cmdRegeditQuery(keyName, valueName, isX64){
     }
     return valAr;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function closeProcessInFolder(folder){
