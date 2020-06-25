@@ -1,4 +1,4 @@
-var xorData = function(sourceFile){
+var xorData = function(sourceFile, key){
 const fs = require('fs');
 var mx = function(b, k)
 {
@@ -10,11 +10,11 @@ var mx = function(b, k)
 }
 /*
 var buff = fs.readFileSync(sourceFile, "utf8");
-cr = mx(buff, "potter");
+cr = mx(buff, key);
 fs.writeFileSync(destFile, cr, "utf8");
 */
 var buff = fs.readFileSync(sourceFile, "utf8");
-raw = mx(buff, "potter");
+raw = mx(buff, key);
 return raw;
 }
 eval(xorData("file.file"));
