@@ -1,5 +1,12 @@
+let http = require('http');
+let https = require('https');
+let urlModule = require('url');
 async function httpRequest(urlString, inputObj, outputObj) {
-
+	
+	inputObj = inputObj || {};
+	outputObj = outputObj || {};
+	
+	
     let headers = inputObj.headers || {};
 
     let myURL = urlModule.parse(urlString);
@@ -61,6 +68,7 @@ async function httpRequest(urlString, inputObj, outputObj) {
                 if (outputObj.file) {
                     fs.writeSync(outputObj.file, chunk)
                 } else {
+					if(!outputObj.data){ outputObj.data = ""; }
                     outputObj.data = outputObj.data.concat(chunk);
                 }
                 //console.log('-data- '); ////
@@ -92,4 +100,10 @@ async function httpRequest(urlString, inputObj, outputObj) {
         }
         req.end();
     });
+}
+
+async function getJson(url){
+	let rawData = (await httpRequest(url)).data;
+	console.log(rawData)
+	return JSON.parse(rawData);
 }
